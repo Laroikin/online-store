@@ -1,3 +1,5 @@
+import { ISourcesSource, INewsSource } from '../types/index';
+
 interface Ioptions {
     apiKey?: string;
     sources?: string;
@@ -6,8 +8,16 @@ interface Ioptions {
 type ApiEndpoints = string;
 
 interface ILoader {
-    getResp({ endpoint, options }: { endpoint: ApiEndpoints; options?: Ioptions }, callback: () => void): void;
-    load(method: string, endpoint: ApiEndpoints, callback: () => void, options: Ioptions): void;
+    getResp(
+        { endpoint, options }: { endpoint: ApiEndpoints; options?: Ioptions },
+        callback: ((data: INewsSource) => void) | ((data: ISourcesSource) => void)
+    ): void;
+    load(
+        method: string,
+        endpoint: ApiEndpoints,
+        callback: ((data: INewsSource) => void) | ((data: ISourcesSource) => void),
+        options: Ioptions
+    ): void;
 }
 
 class Loader implements ILoader {
@@ -19,16 +29,8 @@ class Loader implements ILoader {
     }
 
     public getResp(
-        {
-            endpoint,
-            options = {},
-        }: {
-            endpoint: ApiEndpoints;
-            options?: Ioptions;
-        },
-        callback = () => {
-            console.error('No callback for GET response');
-        }
+        { endpoint, options = {} }: { endpoint: ApiEndpoints; options?: Ioptions },
+        callback: ((data: INewsSource) => void) | ((data: ISourcesSource) => void)
     ) {
         this.load('GET', endpoint, callback, options);
     }
@@ -48,17 +50,22 @@ class Loader implements ILoader {
         let url = `${this.baseLink}${endpoint}?`;
 
         Object.keys(urlOptions).forEach((key) => {
-            url += `${key}=${urlOptions[key]}&`;
+            url += `${key}=${urlOptions[key as keyof Ioptions] ?? ''}&`;
         });
 
         return url.slice(0, -1);
     }
 
-    load(method: string, endpoint: ApiEndpoints, callback: () => void, options: Ioptions = {}) {
+    load(
+        method: string,
+        endpoint: ApiEndpoints,
+        callback: ((data: INewsSource) => void) | ((data: ISourcesSource) => void),
+        options: Ioptions = {}
+    ) {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
             .then((res) => res.json())
-            .then((data) => callback(data))
+            .then((data) => callback(data as INewsSource & ISourcesSource))
             .catch((err) => console.error(err));
     }
 }
