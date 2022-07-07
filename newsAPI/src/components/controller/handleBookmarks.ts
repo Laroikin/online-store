@@ -24,34 +24,43 @@ class HandleBookmarks implements IHandleBookmarks {
 
     event() {
         HandleBookmarks.newsContainer?.addEventListener('click', (event) => {
-            if (HandleBookmarks._savedNews.length >= 10) {
-                alert("You can't have more than 10 articles in your bookmarks!");
-            }
             const target = event.target as HTMLElement;
             if (
                 target.classList.contains('news__bookmark') ||
                 (target.parentNode as HTMLElement).classList.contains('news__bookmark')
             ) {
                 const id = (event.composedPath() as HTMLElement[]).find((ele) => ele.dataset.id)?.dataset.id ?? '';
+                const url =
+                    ((event.composedPath() as HTMLElement[]).find((ele) => ele.classList.contains('news__read-more'))
+                        ?.childNodes[3] as HTMLLinkElement).href ?? '';
+                console.log(url);
                 if (target.childNodes.length) {
                     if ((target.childNodes[0] as HTMLElement).classList.contains('fa-regular')) {
-                        (target.childNodes[0] as HTMLElement).classList.toggle('fa-regular');
-                        (target.childNodes[0] as HTMLElement).classList.toggle('fas');
-                        this.add(id);
+                        if (HandleBookmarks._savedNews.length >= 10) {
+                            alert("You can't have more than 10 articles in your bookmarks!");
+                        } else {
+                            (target.childNodes[0] as HTMLElement).classList.toggle('fa-regular');
+                            (target.childNodes[0] as HTMLElement).classList.toggle('fas');
+                            this.add(id);
+                        }
                     } else {
                         (target.childNodes[0] as HTMLElement).classList.toggle('fa-regular');
                         (target.childNodes[0] as HTMLElement).classList.toggle('fas');
-                        this.remove(id);
+                        this.remove(url);
                     }
                 } else {
                     if (target.classList.contains('fa-regular')) {
-                        target.classList.toggle('fa-regular');
-                        target.classList.toggle('fas');
-                        this.add(id);
+                        if (HandleBookmarks._savedNews.length >= 10) {
+                            alert("You can't have more than 10 articles in your bookmarks!");
+                        } else {
+                            target.classList.toggle('fa-regular');
+                            target.classList.toggle('fas');
+                            this.add(id);
+                        }
                     } else {
                         target.classList.toggle('fa-regular');
                         target.classList.toggle('fas');
-                        this.remove(id);
+                        this.remove(url);
                     }
                 }
             } else return;
@@ -63,8 +72,9 @@ class HandleBookmarks implements IHandleBookmarks {
         this.save();
     }
 
-    private remove(id: string) {
-        HandleBookmarks._savedNews = HandleBookmarks._savedNews.filter((ele, ind) => ind != parseInt(id));
+    private remove(url: string) {
+        console.log(url);
+        HandleBookmarks._savedNews = HandleBookmarks._savedNews.filter((ele) => ele.url != url);
         this.save();
     }
 
