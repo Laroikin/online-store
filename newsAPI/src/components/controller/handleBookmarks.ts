@@ -30,9 +30,9 @@ class HandleBookmarks implements IHandleBookmarks {
                 (target.parentNode as HTMLElement).classList.contains('news__bookmark')
             ) {
                 const id = (event.composedPath() as HTMLElement[]).find((ele) => ele.dataset.id)?.dataset.id ?? '';
-                const url =
-                    ((event.composedPath() as HTMLElement[]).find((ele) => ele.classList.contains('news__read-more'))
-                        ?.childNodes[3] as HTMLLinkElement).href ?? '';
+                const url = ((event.composedPath() as HTMLElement[]).find((ele) =>
+                    ele.classList.contains('news__read-more')
+                )?.childNodes[3] as HTMLLinkElement).href;
                 console.log(url);
                 if (target.childNodes.length) {
                     if ((target.childNodes[0] as HTMLElement).classList.contains('fa-regular')) {
