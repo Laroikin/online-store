@@ -19,7 +19,7 @@ class App implements IApp {
             ?.addEventListener('click', (e) =>
                 this.controller.getNews(e, (data: INewsSource) => this.view.drawNews(data))
             );
-        document.querySelector('.bookmarks')?.addEventListener('click', (e) => {
+        document.querySelector('.bookmarks')?.addEventListener('click', () => {
             this.view.drawNews(this.bookmarks.news);
         });
         this.controller.getSources((data: ISourcesSource) => this.view.drawSources(data));

@@ -1,6 +1,11 @@
 import { INews } from '../types';
 
-class HandleBookmarks {
+interface IHandleBookmarks {
+    event(): void;
+    save(): void;
+}
+
+class HandleBookmarks implements IHandleBookmarks {
     private static STORAGE_KEY = 'NEWS_APP_BOOKMARKS';
     private static _savedNews: INews[] = [];
     private static newsContainer = document.querySelector('.news');
@@ -27,26 +32,26 @@ class HandleBookmarks {
                 target.classList.contains('news__bookmark') ||
                 (target.parentNode as HTMLElement).classList.contains('news__bookmark')
             ) {
-                const id = (event.composedPath() as HTMLElement[]).find((ele) => ele.dataset.id)?.dataset.id;
+                const id = (event.composedPath() as HTMLElement[]).find((ele) => ele.dataset.id)?.dataset.id ?? '';
                 if (target.childNodes.length) {
                     if ((target.childNodes[0] as HTMLElement).classList.contains('fa-regular')) {
                         (target.childNodes[0] as HTMLElement).classList.toggle('fa-regular');
                         (target.childNodes[0] as HTMLElement).classList.toggle('fas');
-                        this.add(id!);
+                        this.add(id);
                     } else {
                         (target.childNodes[0] as HTMLElement).classList.toggle('fa-regular');
                         (target.childNodes[0] as HTMLElement).classList.toggle('fas');
-                        this.remove(id!, event);
+                        this.remove(id);
                     }
                 } else {
                     if (target.classList.contains('fa-regular')) {
                         target.classList.toggle('fa-regular');
                         target.classList.toggle('fas');
-                        this.add(id!);
+                        this.add(id);
                     } else {
                         target.classList.toggle('fa-regular');
                         target.classList.toggle('fas');
-                        this.remove(id!, event);
+                        this.remove(id);
                     }
                 }
             } else return;
@@ -58,7 +63,7 @@ class HandleBookmarks {
         this.save();
     }
 
-    private remove(id: string, event: Event) {
+    private remove(id: string) {
         HandleBookmarks._savedNews = HandleBookmarks._savedNews.filter((ele, ind) => ind != parseInt(id));
         this.save();
     }

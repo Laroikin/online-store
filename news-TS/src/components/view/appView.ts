@@ -18,13 +18,13 @@ export class AppView implements IAppView {
     }
 
     drawNews(data: INewsSource) {
-        const values: INews[] = data?.articles ? data.articles : [];
+        const values: INews[] = data.articles;
         this.news.draw(values);
         AppView.bookmarks.setNews(values);
     }
 
     drawSources(data: ISourcesSource) {
-        const values: ISources[] = data?.sources ? data.sources : [];
+        const values: ISources[] = data.sources;
         this.sources.draw(values);
     }
 }
