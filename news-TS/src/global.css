@@ -6,11 +6,43 @@ body {
 
 header {
     padding: 10px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 header h1 {
     font-size: 40px;
     font-weight: 800;
+}
+
+header .bookmarks {
+    font: inherit;
+    cursor: pointer;
+    padding: 1em 2em;
+    color: #30c5ff;
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background: none;
+    border: 2px #30c5ff solid;
+    transition: 0.25s;
+}
+
+header .bookmarks .fa-star {
+    font-size: 0.9rem;
+    margin-right: 5px;
+    color: #e9d11e;
+}
+
+header .bookmarks:hover,
+header .bookmarks:focus {
+    border-color: #3fcc59;
+    color: #69db7e;
+    box-shadow: 0 0.5em 0.5em -0.4em #3fcc59;
+    transform: translateY(-0.25em);
 }
 
 footer {
