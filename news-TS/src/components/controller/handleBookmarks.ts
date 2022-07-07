@@ -19,8 +19,10 @@ class HandleBookmarks {
 
     event() {
         HandleBookmarks.newsContainer?.addEventListener('click', (event) => {
+            if (HandleBookmarks._savedNews.length >= 10) {
+                alert("You can't have more than 10 articles in your bookmarks!");
+            }
             const target = event.target as HTMLElement;
-
             if (
                 target.classList.contains('news__bookmark') ||
                 (target.parentNode as HTMLElement).classList.contains('news__bookmark')
