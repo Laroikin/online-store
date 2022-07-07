@@ -1,4 +1,7 @@
 body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     color: #fff;
     background: #17181c;
     font-family: sans-serif;
@@ -45,11 +48,25 @@ header .bookmarks:focus {
     transform: translateY(-0.25em);
 }
 
+@media screen and (max-width: 500px) {
+    header {
+        flex-direction: column;
+    }
+}
+
+footer > *{
+    min-width: 33%;
+    display: flex;
+    justify-content: center;
+}
+
 footer {
+    margin-top: auto;
     height: 100px;
     display: flex;
+    width: 100%;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
 }
 footer .copyright {
     font-size: 14px;
@@ -64,4 +81,10 @@ footer .copyright a:hover {
 }
 footer .copyright:before {
     content: '©';
+}
+
+.github-link {
+    text-decoration: none;
+    color: #444;
+    font-family: inherit;
 }
