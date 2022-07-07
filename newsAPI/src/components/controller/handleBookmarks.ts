@@ -33,7 +33,6 @@ class HandleBookmarks implements IHandleBookmarks {
                 const url = ((event.composedPath() as HTMLElement[]).find((ele) =>
                     ele.classList.contains('news__read-more')
                 )?.childNodes[3] as HTMLLinkElement).href;
-                console.log(url);
                 if (target.childNodes.length) {
                     if ((target.childNodes[0] as HTMLElement).classList.contains('fa-regular')) {
                         if (HandleBookmarks._savedNews.length >= 10) {
