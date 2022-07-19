@@ -4,23 +4,37 @@
     "es2021": true,
     "jest": true
   },
-  "extends": [
-    "plugin:react/recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/strict",
-    "airbnb",
-    "airbnb-typescript",
-    "plugin:@typescript-eslint/recommended-requiring-type-checking"
-  ],
   "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
-    },
-    "ecmaVersion": "latest",
-    "sourceType": "module",
-    "project": ["tsconfig.json"]
-  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"], // Your TypeScript files extension
+
+      // As mentioned in the comments, you should extend TypeScript plugins here,
+      // instead of extending them outside the `overrides`.
+      // If you don't want to extend any rules, you don't need an `extends` attribute.
+      "extends": [
+        "plugin:react/recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/strict",
+        "airbnb",
+        "airbnb-typescript",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking"
+      ],
+
+      "parserOptions": {
+        "project": ["./tsconfig.json"], // Specify it only for TypeScript files
+        "ecmaFeatures": {
+          "jsx": true
+        },
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+      },
+      "plugins": ["react", "@typescript-eslint"],
+      "rules": {
+        "@typescript-eslint/no-explicit-any": 2
+      }
+    }
+  ],
   "plugins": ["react", "@typescript-eslint"],
   "rules": {
     "@typescript-eslint/no-explicit-any": 2
