@@ -1,29 +1,36 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// import Header from './components/Header';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { ChakraProvider } from '@chakra-ui/react';
+import {
+  Home,
+  About,
+  Cart,
+  Products,
+  Error,
+  Checkout,
+  SingleProduct,
+  // Private
+} from './pages';
+import { Navbar, Footer } from './components';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit
-          {' '}
-          <code>src/App.tsx</code>
-          {' '}
-          and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ChakraProvider>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/About" element={<About />} />
+          <Route path="/Cart" element={<Cart />} />
+          <Route path="/Products" element={<Products />} />
+          <Route path="/Checkout" element={<Checkout />} />
+          <Route path="/Protucts/:id" element={<SingleProduct />} />
+          <Route path="*" element={<Error />} />
+        </Routes>
+        <Footer />
+      </Router>
+    </ChakraProvider>
   );
 }
 
