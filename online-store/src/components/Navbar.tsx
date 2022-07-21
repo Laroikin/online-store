@@ -47,7 +47,7 @@ function Header() {
   }, [colorMode]);
 
   useEffect(() => {
-    document.querySelector('body')?.classList.toggle('nav-open');
+    if (isOpen) document.querySelector('body')?.classList.toggle('nav-open');
   }, [isOpen]);
 
   function changeScroll() {
