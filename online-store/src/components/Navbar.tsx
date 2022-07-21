@@ -37,14 +37,8 @@ const linkList: ILinkList[] = [
 
 function Header() {
   const { isOpen, onToggle } = useDisclosure();
-  const [color, setColor] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const { colorMode, toggleColorMode } = useColorMode();
-
-  useEffect(() => {
-    document
-      .querySelector('body')
-      ?.classList.toggle('dark', colorMode === 'dark');
-  }, [colorMode]);
 
   useEffect(() => {
     if (isOpen) document.querySelector('body')?.classList.add('nav-open');
@@ -58,22 +52,22 @@ function Header() {
     }
   }
 
-  const changeColor = () => {
+  const changeHeader = () => {
     if (window.scrollY >= 25) {
-      setColor(true);
-    } else setColor(false);
+      setIsScrolled(true);
+    } else setIsScrolled(false);
   };
 
   window.addEventListener('resize', changeScroll);
-  window.addEventListener('scroll', changeColor);
+  window.addEventListener('scroll', changeHeader);
 
   return (
     <header
       className={cn(
         'fixed z-50 w-full !transition-colors !duration-200 !ease-in-out p-5 bg-transparent border-transparent saturate-100 top-0',
         {
-          'dark:bg-slate-900/75 bg-white/75 backdrop:saturate-100 dark:border-white/20  backdrop-blur-[8px] border-b-[1px] border-gray-600/10':
-            color,
+          'dark:bg-slate-900/75 bg-white/75 backdrop:saturate-100 dark:border-slate-800  backdrop-blur-[8px] border-b-[1px] border-gray-600/10':
+            isScrolled,
           'bg-white dark:bg-slate-900': isOpen,
         },
       )}

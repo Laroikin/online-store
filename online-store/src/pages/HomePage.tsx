@@ -1,8 +1,15 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+import animations from '../utils/animations';
 
 function HomePage() {
   return (
-    <>
+    <motion.div
+      variants={animations}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+    >
       <h1>HomePage</h1>
       <div>
         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Commodi iusto
@@ -556,7 +563,7 @@ function HomePage() {
         aspernatur velit temporibus rem provident dolores cum sit eveniet
         reprehenderit?
       </div>
-    </>
+    </motion.div>
   );
 }
 

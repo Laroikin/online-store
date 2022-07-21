@@ -18,12 +18,12 @@ function Footer() {
         <Link
           isExternal
           appearance="button"
-          className="flex items-center justify-self-end"
+          className="flex items-center justify-self-end !no-underline"
           href="https://github.com/Laroikin"
         >
           <Button
             variant="outline"
-            className="!font-normal !bg-white dark:!bg-black"
+            className="!font-normal !bg-white dark:!bg-slate-900 hover:dark:!bg-slate-800"
           >
             Check my GitHub
             <ExternalLinkIcon ml="1" />

@@ -1,10 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Text, Heading, Button } from '@chakra-ui/react';
+import { motion } from 'framer-motion';
+import animations from '../utils/animations';
 
 function ErrorPage() {
   return (
-    <div className="h-screen flex justify-center items-center px-5">
+    <motion.div
+      variants={animations}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      className="h-screen flex justify-center items-center px-5"
+    >
       <div className="flex justify-center items-center flex-col">
         <Heading className="!text-9xl !font-black bg-gradient-to-r bg-clip-text text-transparent from-indigo-500 via-purple-500 to-pink-500 drop-shadow-lg shadow-gray-100/10">
           404
@@ -16,11 +24,11 @@ function ErrorPage() {
           The requested page doesn&apos;t exist or you don&apos;t have access to
           it.
         </Text>
-        <Button className="mt-10">
-          <Link to="/">Back Home</Link>
-        </Button>
+        <Link to="/">
+          <Button className="mt-10">Back Home</Button>
+        </Link>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
