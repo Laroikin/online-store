@@ -10,7 +10,6 @@ function App() {
   const { colorMode } = useColorMode();
 
   useEffect(() => {
-    console.log(colorMode);
     document
       .querySelector('body')
       ?.classList.toggle('dark', colorMode === 'dark');
