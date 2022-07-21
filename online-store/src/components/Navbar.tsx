@@ -47,8 +47,9 @@ function Header() {
   }, [colorMode]);
 
   useEffect(() => {
-    if (isOpen) document.querySelector('body')?.classList.toggle('nav-open');
-  });
+    if (isOpen) document.querySelector('body')?.classList.add('nav-open');
+    if (!isOpen) document.querySelector('body')?.classList.remove('nav-open');
+  }, [isOpen]);
 
   function changeScroll() {
     if (window.innerWidth >= 768) {
