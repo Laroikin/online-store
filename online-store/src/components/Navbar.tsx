@@ -147,12 +147,14 @@ function Header() {
             {' '}
             Mode
           </Button>
-          <Button colorScheme="gray" variant="outline">
-            <span className="dark:text-white text-black">Cart</span>
-            <BsCart2 className="ml-1 w-5 h-5 dark:text-white text-black" />
-            <span className="absolute top-1 right-1 text-[0.6rem] bg-red-500 h-5 w-5 text-white flex justify-center items-center rounded-full">20</span>
+          <Button colorScheme="gray" variant="outline" onClick={onToggle}>
+            <RouterLink to="/cart" className="flex w-full items-center justify-center">
+              <span className="dark:text-white text-black">Cart</span>
+              <BsCart2 className="ml-1 w-5 h-5 dark:text-white text-black" />
+              <span className="absolute top-1 right-1 text-[0.6rem] bg-red-500 h-5 w-5 text-white flex justify-center items-center rounded-full">20</span>
+            </RouterLink>
           </Button>
-          <Button colorScheme="pink" className="!bg-pink-400 hover:!bg-pink-300/90 dark:hover:!bg-pink-500/80 dark:!bg-pink-500" variant="solid">
+          <Button colorScheme="pink" className="!bg-pink-400 hover:!bg-pink-300/90 dark:hover:!bg-pink-500/80 dark:!bg-pink-500" variant="solid" onClick={onToggle}>
             <span className="text-white">Sign In</span>
           </Button>
         </Stack>

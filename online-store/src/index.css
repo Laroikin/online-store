@@ -20,7 +20,7 @@
   }
   
   #root{
-    @apply !min-h-screen flex flex-col pt-28;
+    @apply !min-h-screen flex flex-col;
   }
 
   .nav-open{
