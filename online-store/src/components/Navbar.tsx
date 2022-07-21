@@ -48,7 +48,7 @@ function Header() {
 
   useEffect(() => {
     if (isOpen) document.querySelector('body')?.classList.toggle('nav-open');
-  }, [isOpen]);
+  });
 
   function changeScroll() {
     if (window.innerWidth >= 768) {
