@@ -17,10 +17,11 @@
     @apply dark:bg-slate-800 !important;
     @apply dark:text-slate-200 !important;
     @apply transition-colors duration-300 ease-out !important;
+    @apply pt-24;
   }
   
   #root{
-    @apply !min-h-screen flex flex-col;
+    @apply !min-h-[calc(100vh-6rem)] flex flex-col;
   }
 
   .nav-open{

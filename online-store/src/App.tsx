@@ -4,6 +4,7 @@ import {
   BrowserRouter as Router,
 } from 'react-router-dom';
 import { useColorMode } from '@chakra-ui/react';
+import { ParallaxProvider } from 'react-scroll-parallax';
 import { Navbar, Footer, AnimatedRoutes } from './components';
 
 function App() {
@@ -17,9 +18,11 @@ function App() {
 
   return (
     <Router>
-      <Navbar />
-      <AnimatedRoutes />
-      <Footer />
+      <ParallaxProvider>
+        <Navbar />
+        <AnimatedRoutes />
+        <Footer />
+      </ParallaxProvider>
     </Router>
   );
 }

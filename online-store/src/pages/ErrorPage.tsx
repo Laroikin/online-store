@@ -11,10 +11,10 @@ function ErrorPage() {
       initial="initial"
       animate="animate"
       exit="exit"
-      className="h-screen flex justify-center items-center px-5"
+      className="h-[calc(100vh-12rem)] flex justify-center items-center px-5"
     >
       <div className="flex justify-center items-center flex-col">
-        <Heading className="!text-9xl !font-black bg-gradient-to-r bg-clip-text text-transparent from-indigo-500 via-purple-500 to-pink-500 drop-shadow-lg shadow-gray-100/10">
+        <Heading className="!text-9xl !font-black bg-gradient-to-r bg-clip-text text-transparent from-indigo-500 via-purple-500 to-pink-500 drop-shadow-2xl">
           404
         </Heading>
         <Heading size="lg" className="mt-10">
