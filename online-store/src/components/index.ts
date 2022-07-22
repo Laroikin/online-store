@@ -1,5 +1,7 @@
 import Footer from './Footer';
 import Navbar from './Navbar';
-import AnimatedRoutes from './AnimatedRoutes';
+import Section from './Section';
 
-export { Footer, Navbar, AnimatedRoutes };
+export {
+  Footer, Navbar, Section,
+};

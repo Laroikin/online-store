@@ -5,7 +5,8 @@ import {
 } from 'react-router-dom';
 import { useColorMode } from '@chakra-ui/react';
 import { ParallaxProvider } from 'react-scroll-parallax';
-import { Navbar, Footer, AnimatedRoutes } from './components';
+import { Navbar, Footer } from './components';
+import AnimatedRoutes from './components/AnimatedRoutes';
 
 function App() {
   const { colorMode } = useColorMode();

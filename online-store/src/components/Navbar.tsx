@@ -33,6 +33,10 @@ const linkList: ILinkList[] = [
     name: 'Products',
     href: '/Products',
   },
+  {
+    name: 'Checkout',
+    href: '/Checkout',
+  },
 ];
 
 function Header() {
@@ -72,14 +76,14 @@ function Header() {
         },
       )}
     >
-      <div className="mx-auto max-w-[1440px] flex md:grid md:grid-cols-3 justify-between items-center">
+      <div className="mx-auto max-w-[1440px] flex lg:grid lg:grid-cols-3 justify-between items-center">
         <RouterLink to="/" className="flex">
           <img src={logo} className="w-5 dark:invert mr-2" alt="store logo" />
           <Text className="dark:text-white text-black font-bold text-lg">
             Laroikin Store
           </Text>
         </RouterLink>
-        <div className="hidden md:flex items-center justify-center gap-8">
+        <div className="hidden lg:flex items-center justify-center gap-8">
           {linkList.map((link) => (
             <RouterLink
               className="transition-colors ease-in-out text-black/40 hover:text-black duration-200 dark:text-gray-500 dark:hover:text-white"
@@ -89,7 +93,7 @@ function Header() {
             </RouterLink>
           ))}
         </div>
-        <div className="hidden md:flex gap-5 items-center justify-end">
+        <div className="hidden lg:flex gap-5 items-center justify-end">
           <Button
             colorScheme="gray"
             variant="outline"
@@ -106,7 +110,7 @@ function Header() {
             <span className="text-white !font-normal">Sign In</span>
           </Button>
         </div>
-        <div className="flex md:hidden gap-5 items-center justify-end">
+        <div className="flex lg:hidden gap-5 items-center justify-end">
           <Button colorScheme="gray" variant="outline" onClick={onToggle}>
             {isOpen ? <CloseIcon h="3" w="4" /> : <HamburgerIcon />}
           </Button>
